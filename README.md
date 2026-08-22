@@ -87,9 +87,11 @@ aws s3 cp data/exam_scores.csv \
 ssh -i ~/.ssh/exam-score-server.pem ubuntu@<public-ip-of-EC2-Instance>
 
 ## Create python virtual environment. Install if you need to.
-sudo apt install python3.12-venv
-python3 -m venv .venv
-source .venv/bin/activate
+`sudo apt install python3.12-venv`
+
+`python3 -m venv .venv`
+
+`source .venv/bin/activate`
 
 ## Install required libraries
 pip install boto3 pandas
