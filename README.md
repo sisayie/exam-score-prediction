@@ -15,9 +15,9 @@ When prompted, enter the key and secret provided after you created the sandbox.
 
 `aws configure`
 
-AWS Access Key ID []: <the key in the sandbox>
+AWS Access Key ID []: the key in the sandbox
 
-AWS Secret Access Key []: <the secret in the sandbox>
+AWS Secret Access Key []: the secret in the sandbox
 
 Default region name []: 
 
@@ -53,7 +53,7 @@ aws cloudformation create-stack \
 --parameters \
    ParameterKey=KeyName,ParameterValue=exam-score-server-key \
   ParameterKey=BucketName,ParameterValue=my-ml-bucket-2108 \
-   ParameterKey=MyIp,ParameterValue=<your public ip>/32
+   ParameterKey=MyIp,ParameterValue=your public ip/32
 ```
 The S3 bucket name needs to be globally unique. 
 
@@ -74,7 +74,7 @@ In case you see the status correspoding to your stak name a value different from
 
 ## 5. Build the Model
 ### 5.1 Upload data to S3 Bucket
-Upload dataset to data folder of S3 bucket using `aws s3 cp <path-to-data> s3://<bucket-name>/<path-to-data>
+Upload dataset to data folder of S3 bucket using `aws s3 cp path-to-data s3://bucket-name/path-to-data
 
 Example:
 
@@ -88,7 +88,7 @@ Use the [Notepad](exam-score-linear-regression-example.ipynb) to build the model
 
 ## 6. Setup the EC2 Server
 ### 6.1 Connect to the EC2 server via ssh
-ssh -i ~/.ssh/exam-score-server.pem ubuntu@<public-ip-of-EC2-Instance>
+ssh -i ~/.ssh/exam-score-server.pem ubuntu@public-ip-of-EC2-Instance
 
 ### 6.2 Create python virtual environment. Install if you need to.
 `sudo apt update`
