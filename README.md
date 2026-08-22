@@ -34,7 +34,7 @@ If you are working on WSL, you need to move the key file to `~/.ssh`. Otherwise 
 ## Step 4. Setup the Infrastructure
 After you create the key pair, you can run the following command to create the infrastructure, i.e., VPC, Subnet, EC2, Security Group, Internet Gateway, Route Table. 
 ### 4.1 Create the CloudFormation template
-
+You can download the [CloudFormation template file](exam-score-ml-stack.yml) included in this project. You may change it to suit your needs.
 ### 4.2 Get your public Ip
 
 You can get your public IP using the command:
@@ -63,4 +63,4 @@ Or if you need more detailed information about the events,
 
 You can also verify by using the AWS console: **CloudFormation** --> **Stacks**
 
-In case you see the status correspoding to your stak name a value different from `CREATE_COMPLETE`, you can get more details about the events. You can see the events by clicking the stack name and opening the **Events* tab.
+In case you see the status correspoding to your stak name a value different from `CREATE_COMPLETE`, you can get more details about the events. You can see the events by clicking the stack name and opening the **Events** tab.
