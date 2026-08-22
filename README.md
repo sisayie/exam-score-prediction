@@ -61,6 +61,8 @@ Verify if the stack is created using:
 Or if you need more detailed information about the events,
 `aws cloudformation describe-stack-events --stack-name exam-score-server`
 
+You can also verify if the individual AWS services are created using the console.
+
 You can also verify by using the AWS console: **CloudFormation** --> **Stacks**
 
 In case you see the status correspoding to your stak name a value different from `CREATE_COMPLETE`, you can get more details about the events. You can see the events by clicking the stack name and opening the **Events** tab.
