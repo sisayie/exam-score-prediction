@@ -98,3 +98,19 @@ ssh -i ~/.ssh/exam-score-server.pem ubuntu@<public-ip-of-EC2-Instance>
 ## Install required libraries
 pip install boto3 pandas
 
+## Run it with `python [download_model.py]("download_model.py")`
+But before you run the file, you may need to first set the credentials.
+    -- install awscli
+```
+apt update
+apt install awscli 
+```
+
+#if the above command does not work, use the following to install awscli
+```
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+sudo apt install unzip -y
+unzip awscliv2.zip
+sudo ./aws/install
+```
+Then run the command in Step 2 above on the EC2 server
