@@ -14,8 +14,11 @@ When prompted, enter the key and secret provided after you created the sandbox.
 `aws configure`
 
 AWS Access Key ID []: <the key in the sandbox>
+
 AWS Secret Access Key []: <the secret in the sandbox>
+
 Default region name []: 
+
 Default output format []: 
 
 ---
