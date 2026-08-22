@@ -44,7 +44,8 @@ You can get your public IP using the command:
 	`(Invoke-RestMethod -Uri "https://api.ipify.org")`
 
 ### 4.3 Create the stack
-```aws cloudformation create-stack 
+```
+aws cloudformation create-stack 
 --stack-name exam-score-server 
 --template-body file://exam-score-ml-stack.yml 
 --parameters 
