@@ -1,5 +1,7 @@
 # Practical Session on Using CloudFormation, Machine Learning model development and deployment on AWS Cloud
 
+In this exercise, you will develop and deploy a simple linear regression model on AWS. The exercise enables you to practice the following key AWS services, S3, SageMaker, EC2, CloudFormation, VPC, Internet Gateway, Subnet, Security Group, Route Table and IAM. In addition, it provides a solid structure of ecosystem to develop a secure, scalable machine learning app.
+
 ## Step 1. Install Amazon CLI
 ```
 apt update
@@ -119,3 +121,16 @@ unzip awscliv2.zip
 sudo ./aws/install
 ```
 Then run the command in Step 2 above on the EC2 server
+
+After credentials are in place, you can run `python download_model.py`
+
+Then create the predict.py file on the EC2 server and run `flask --app predict run --host 0.0.0.0 --port 8000 &`. The `&` is needed to run the flask app in the background. By doing so, you cna run other commands on the same terminal. If you omit `&`, you may have to start another terminal, connect to EC2 via ssh and run the next command.
+
+Finally, on 
+curl "http://localhost:8000/predict?hours=8"
+
+You should see, 
+{"hours_studied":8.0,"predicted_score":74.88}
+
+Congratulations! 
+You have completed developing and deploying an end-to-end machine learning model on AWS!
