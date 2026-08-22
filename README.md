@@ -23,7 +23,7 @@ Default output format []:
 
 ---
 
-# Step 3. Create Key Pair
+## Step 3. Create Key Pair
 After you configure the credentials, run the following command to generate the key pair on your local machine.
 `aws ec2 create-key-pair   --key-name exam-score-server-key   --query 'KeyMaterial'   --output text > exam-score-server.pem`
 
@@ -33,9 +33,9 @@ If you are working on WSL, you need to move the key file to `~/.ssh`. Otherwise 
 
 ## Step 4. Setup the Infrastructure
 After you create the key pair, you can run the following command to create the infrastructure, i.e., VPC, Subnet, EC2, Security Group, Internet Gateway, Route Table. 
-4.1 Create the CloudFormation template
+### 4.1 Create the CloudFormation template
 
-4.2 Get your public Ip
+### 4.2 Get your public Ip
 
 You can get your public IP using the command:
 - in Linux 
@@ -43,7 +43,7 @@ You can get your public IP using the command:
 - In Windows, run:
 	`(Invoke-RestMethod -Uri "https://api.ipify.org")`
 
-4.3 Create the stack
+### 4.3 Create the stack
 ```aws cloudformation create-stack 
 --stack-name exam-score-server 
 --template-body file://exam-score-ml-stack.yml 
@@ -54,7 +54,7 @@ You can get your public IP using the command:
 ```
 The S3 bucket name needs to be globally unique. 
 
-4.4 Verify the stack creation
+### 4.4 Verify the stack creation
 Verify if the stack is created using:
 `aws cloudformation describe-stacks --stack-name exam-score-server`
 
