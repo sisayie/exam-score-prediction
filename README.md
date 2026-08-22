@@ -83,7 +83,7 @@ aws s3 cp data/exam_scores.csv \
         s3://my-ml-bucket-2108/data/exam_scores.csv
 ```
 ### 5.2 Build and Deploy Model on SageMaker
-Use the [Notepad] (exam-score-linear-regression-example.ipynb) to build the model and upload it to S3 on On SageMaker.
+Use the [Notepad](exam-score-linear-regression-example.ipynb) to build the model and upload it to S3 on On SageMaker.
 ---
 
 ## 6. Setup the EC2 Server
