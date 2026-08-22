@@ -67,3 +67,30 @@ You can also verify if the individual AWS services are created using the console
 You can also verify by using the AWS console: **CloudFormation** --> **Stacks**
 
 In case you see the status correspoding to your stak name a value different from `CREATE_COMPLETE`, you can get more details about the events. You can see the events by clicking the stack name and opening the **Events** tab.
+
+---
+
+## Upload data to S3 Bucket
+Upload dataset to data folder of S3 bucket using `aws s3 cp <path-to-data> s3://<bucket-name>/<path-to-data>
+
+Example:
+
+```
+aws s3 cp data/exam_scores.csv \
+        s3://my-ml-bucket-2108/data/exam_scores.csv
+```
+
+---
+
+## # Setup the EC2 Server
+### Connect to the EC2 server via ssh
+ssh -i ~/.ssh/exam-score-server.pem ubuntu@<public-ip-of-EC2-Instance>
+
+## Create python virtual environment. Install if you need to.
+sudo apt install python3.12-venv
+python3 -m venv .venv
+source .venv/bin/activate
+
+## Install required libraries
+pip install boto3 pandas
+
