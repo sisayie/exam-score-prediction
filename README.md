@@ -45,12 +45,12 @@ You can get your public IP using the command:
 
 ### 4.3 Create the stack
 ```
-aws cloudformation create-stack 
---stack-name exam-score-server 
---template-body file://exam-score-ml-stack.yml 
---parameters 
-   ParameterKey=KeyName,ParameterValue=exam-score-server-key
-  ParameterKey=BucketName,ParameterValue=my-ml-bucket-2108
+aws cloudformation create-stack \
+--stack-name exam-score-server \
+--template-body file://exam-score-ml-stack.yml \
+--parameters \
+   ParameterKey=KeyName,ParameterValue=exam-score-server-key \
+  ParameterKey=BucketName,ParameterValue=my-ml-bucket-2108 \
    ParameterKey=MyIp,ParameterValue=<your public ip>/32
 ```
 The S3 bucket name needs to be globally unique. 
