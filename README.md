@@ -134,3 +134,28 @@ You should see,
 
 Congratulations! 
 You have completed developing and deploying an end-to-end machine learning model on AWS!
+
+# Next: Security Considerations
+## Storing Access Keys on EC2
+You generally should not put AWS access keys on the EC2 instance as we did in Step 2 above.
+
+Instead, give the EC2 instance an IAM role (instance profile) with an S3 policy attached to it.
+
+In our example, we need to create an IAM role + instance profile and attach it to ExamScoreServer
+
+==> This enables the application running on the EC2 to use the AWS SDK/CLI without storing AWS credentials on the server.
+
+For example, if you use AWS CLI to run `aws s3 ls s3://YOUR-BUCKET-NAME` or `aws s3 cp s3://YOUR-BUCKET-NAME/data.csv /tmp/data.csv`, AWS SDK will automatically obtain temporary credentials from the EC2 instance's IAM role. Same is true if you run the following python program from your EC2 server:
+```
+import boto3
+
+s3 = boto3.client("s3")
+
+response = s3.get_object(
+    Bucket="your-bucket-name",
+    Key="data.csv"
+)
+
+data = response["Body"].read()
+```
+
