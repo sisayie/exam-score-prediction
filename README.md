@@ -72,7 +72,7 @@ In case you see the status correspoding to your stak name a value different from
 
 ---
 
-## 5. Build the Model
+## Step 5. Build the Model
 ### 5.1 Upload data to S3 Bucket
 Upload dataset to data folder of S3 bucket using `aws s3 cp path-to-data s3://bucket-name/path-to-data
 
@@ -83,10 +83,12 @@ aws s3 cp data/exam_scores.csv \
         s3://my-ml-bucket-2108/data/exam_scores.csv
 ```
 ### 5.2 Build and Deploy Model on SageMaker
+
 Use the [Notepad](exam-score-linear-regression-example.ipynb) to build the model and upload it to S3 on On SageMaker.
+
 ---
 
-## 6. Setup the EC2 Server
+## Step 6. Setup the EC2 Server
 ### 6.1 Connect to the EC2 server via ssh
 ssh -i ~/.ssh/exam-score-server.pem ubuntu@public-ip-of-EC2-Instance
 
@@ -134,6 +136,8 @@ You should see,
 
 Congratulations! 
 You have completed developing and deploying an end-to-end machine learning model on AWS!
+
+---
 
 # Next: Security Considerations
 ## Storing Access Keys on EC2
