@@ -105,9 +105,8 @@ ssh -i ~/.ssh/exam-score-server.pem ubuntu@public-ip-of-EC2-Instance
 `pip install -r requirements.txt`
 
 ### 6.4 Perform Prediction 
-Run [download_model.py]("download_model.py") with `python download_model.py` 
-
-But before you run the file, you may need to first set the credentials.
+#### 6.4.1 Do you need to store credentials on EC2 instance?
+But before you run the file [download_model.py]("download_model.py") with `python download_model.py`, you may need to first set the credentials.
     
 ```
 # -- install awscli 
@@ -124,6 +123,7 @@ sudo ./aws/install
 ```
 Then run the command in Step 2 above on the EC2 server
 
+#### 6.4.2 Download the Model and Perform Prediction
 After credentials are in place, you can run `python download_model.py`
 
 Then create the predict.py file on the EC2 server and run `flask --app predict run --host 0.0.0.0 --port 8000 &`. The `&` is needed to run the flask app in the background. By doing so, you cna run other commands on the same terminal. If you omit `&`, you may have to start another terminal, connect to EC2 via ssh and run the next command.
@@ -141,7 +141,7 @@ You have completed developing and deploying an end-to-end machine learning model
 
 # Next: Security Considerations
 ## Storing Access Keys on EC2
-You generally should not put AWS access keys on the EC2 instance as we did in Step 2 above.
+You generally should not put AWS access keys on the EC2 instance as we did in Step 6.4.1 above.
 
 Instead, give the EC2 instance an IAM role (instance profile) with an S3 policy attached to it.
 
