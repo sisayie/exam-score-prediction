@@ -2,6 +2,9 @@
 
 In this exercise, you will develop and deploy a simple linear regression model on AWS. The exercise enables you to practice the following key AWS services, S3, SageMaker, EC2, CloudFormation, VPC, Internet Gateway, Subnet, Security Group, Route Table and IAM. In addition, it provides a solid structure of ecosystem to develop a secure, scalable machine learning app.
 
+===
+
+# A. Preparation
 ## Step 1. Install Amazon CLI
 ```
 apt update
@@ -32,6 +35,10 @@ After you configure the credentials, run the following command to generate the k
 Then set its permission using `chmod 400 exam-score-server.pem`
 
 If you are working on WSL, you need to move the key file to `~/.ssh`. Otherwise the permission setting won't take effect.
+
+===
+
+# B. Infrastructure Setup
 
 ## Step 4. Setup the Infrastructure
 After you create the key pair, you can run the following command to create the infrastructure, i.e., VPC, Subnet, EC2, Security Group, Internet Gateway, Route Table. 
@@ -70,7 +77,9 @@ You can also verify by using the AWS console: **CloudFormation** --> **Stacks**
 
 In case you see the status correspoding to your stak name a value different from `CREATE_COMPLETE`, you can get more details about the events. You can see the events by clicking the stack name and opening the **Events** tab.
 
----
+===
+
+# C. Model Building
 
 ## Step 5. Build the Model
 ### 5.1 Upload data to S3 Bucket
@@ -86,7 +95,9 @@ aws s3 cp data/exam_scores.csv \
 
 Use the [Notebook](exam-score-linear-regression-example.ipynb) to build the model and upload it to S3 on On SageMaker.
 
----
+===
+
+# D. Inference
 
 ## Step 6. Setup the EC2 Server
 ### 6.1 Connect to the EC2 server via ssh
@@ -139,7 +150,7 @@ You have completed developing and deploying an end-to-end machine learning model
 
 ---
 
-# Next: Security Considerations
+# E. Next: Security Considerations
 ## Storing Access Keys on EC2
 You generally should not put AWS access keys on the EC2 instance as we did in Step 6.4.1 above.
 
