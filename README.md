@@ -36,7 +36,7 @@ Then set its permission using `chmod 400 exam-score-server.pem`
 
 If you are working on WSL, you need to move the key file to `~/.ssh`. Otherwise the permission setting won't take effect.
 
-===
+---
 
 # B. Infrastructure Setup
 
@@ -77,7 +77,8 @@ You can also verify by using the AWS console: **CloudFormation** --> **Stacks**
 
 In case you see the status correspoding to your stak name a value different from `CREATE_COMPLETE`, you can get more details about the events. You can see the events by clicking the stack name and opening the **Events** tab.
 
-===
+---
+---
 
 # C. Model Building
 
@@ -95,7 +96,7 @@ aws s3 cp data/exam_scores.csv \
 
 Use the [Notebook](exam-score-linear-regression-example.ipynb) to build the model and upload it to S3 on On SageMaker.
 
-===
+---
 
 # D. Inference
 
