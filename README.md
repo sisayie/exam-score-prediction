@@ -113,7 +113,7 @@ ssh -i ~/.ssh/exam-score-server.pem ubuntu@public-ip-of-EC2-Instance
 `source .venv/bin/activate`
 
 ### 6.3 Install required libraries
-`pip install -r requirements.txt`
+`pip install -r [requirements.txt](requirements.txt)`
 
 ### 6.4 Perform Prediction 
 #### 6.4.1 Do you need to store credentials on EC2 instance?
