@@ -91,7 +91,6 @@ aws s3 cp data/exam_scores.csv \
 ## 4.1 Build and Deploy Model on SageMaker
 
 Use the [Notebook](exam-score-linear-regression-example.ipynb) to build the model and upload it to S3 on On SageMaker.
-[📓 View the notebook](https://github.com/sisayie/exam-score-prediction/blob/main/exam-score-linear-regression-example.ipynb)
 
 ---
 
