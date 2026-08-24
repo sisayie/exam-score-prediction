@@ -4,8 +4,8 @@ In this exercise, you will develop and deploy a simple linear regression model o
 
 ---
 
-# A. Preparation
-## Step 1. Install Amazon CLI
+# Step 1. Preparation
+## 1.1. Install Amazon CLI
 ```
 apt update
 apt install awscli
@@ -13,7 +13,7 @@ apt install awscli
 
 ---
 
-## Step 2. Configure Credentials
+## 1.2. Configure Credentials
 When prompted, enter the key and secret provided after you created the sandbox.
 
 `aws configure`
@@ -26,9 +26,7 @@ Default region name []:
 
 Default output format []: 
 
----
-
-## Step 3. Create Key Pair
+## 1.3. Create Key Pair
 After you configure the credentials, run the following command to generate the key pair on your local machine.
 `aws ec2 create-key-pair   --key-name exam-score-server-key   --query 'KeyMaterial'   --output text > exam-score-server.pem`
 
@@ -36,15 +34,7 @@ Then set its permission using `chmod 400 exam-score-server.pem`
 
 If you are working on WSL, you need to move the key file to `~/.ssh`. Otherwise the permission setting won't take effect.
 
----
-
-# B. Infrastructure Setup
-
-## Step 4. Setup the Infrastructure
-After you create the key pair, you can run the following command to create the infrastructure, i.e., VPC, Subnet, EC2, Security Group, Internet Gateway, Route Table. 
-### 4.1 Create the CloudFormation template
-You can download the [CloudFormation template file](exam-score-ml-stack.yml) included in this project. You may change it to suit your needs.
-### 4.2 Get your public Ip
+## 1.4 Get your public Ip
 
 You can get your public IP using the command:
 - in Linux 
@@ -52,7 +42,14 @@ You can get your public IP using the command:
 - In Windows, run:
 	`(Invoke-RestMethod -Uri "https://api.ipify.org")`
 
-### 4.3 Create the stack
+---
+
+# Step 2. Setting up the Infrastructure
+After you create the key pair, you can run the following command to create the infrastructure, i.e., VPC, Subnet, EC2, Security Group, Internet Gateway, Route Table. 
+## 2.1 Create the CloudFormation template
+You can download the [CloudFormation template file](exam-score-ml-stack.yml) included in this project. You may change it to suit your needs.
+
+## 2.2 Create the stack
 ```
 aws cloudformation create-stack \
 --stack-name exam-score-server \
@@ -64,7 +61,7 @@ aws cloudformation create-stack \
 ```
 The S3 bucket name needs to be globally unique. 
 
-### 4.4 Verify the stack creation
+## 2.3 Verify the stack creation
 Verify if the stack is created using:
 `aws cloudformation describe-stacks --stack-name exam-score-server`
 
@@ -79,10 +76,8 @@ In case you see the status correspoding to your stak name a value different from
 
 ---
 
-# C. Model Building
-
-## Step 5. Build the Model
-### 5.1 Upload data to S3 Bucket
+# Step 3. Build the Model
+## 3.1 Upload data to S3 Bucket
 Upload dataset to data folder of S3 bucket using `aws s3 cp path-to-data s3://bucket-name/path-to-data
 
 Example:
@@ -91,19 +86,19 @@ Example:
 aws s3 cp data/exam_scores.csv \
         s3://my-ml-bucket-2108/data/exam_scores.csv
 ```
-### 5.2 Build and Deploy Model on SageMaker
+## 3.2 Build and Deploy Model on SageMaker
 
 Use the [Notebook](exam-score-linear-regression-example.ipynb) to build the model and upload it to S3 on On SageMaker.
 
 ---
 
-# D. Inference
+# Step 4. Inference
 
-## Step 6. Setup the EC2 Server
-### 6.1 Connect to the EC2 server via ssh
+## 4.1. Setup the EC2 Server
+### 4.1.1 Connect to the EC2 server via ssh
 ssh -i ~/.ssh/exam-score-server.pem ubuntu@public-ip-of-EC2-Instance
 
-### 6.2 Create python virtual environment. Install if you need to.
+### 4.1.2 Create python virtual environment. Install if you need to.
 `sudo apt update`
 
 `sudo apt install python3.12-venv`
@@ -112,11 +107,10 @@ ssh -i ~/.ssh/exam-score-server.pem ubuntu@public-ip-of-EC2-Instance
 
 `source .venv/bin/activate`
 
-### 6.3 Install required libraries
+## 4.1.3 Install required libraries
 `pip install -r requirements.txt`
 
-### 6.4 Perform Prediction 
-#### 6.4.1 Do you need to store credentials on EC2 instance?
+### 4.1.4 Do you need to store credentials on EC2 instance?
 But before you run the file [download_model.py]("download_model.py") with `python download_model.py`, you may need to first set the credentials.
     
 ```
@@ -134,7 +128,7 @@ sudo ./aws/install
 ```
 Then run the command in Step 2 above on the EC2 server
 
-#### 6.4.2 Download the Model and Perform Prediction
+## 4.2 Download the Model and Perform Prediction
 After credentials are in place, you can run `python download_model.py`
 
 Then create the predict.py file on the EC2 server and run `flask --app predict run --host 0.0.0.0 --port 8000 &`. The `&` is needed to run the flask app in the background. By doing so, you cna run other commands on the same terminal. If you omit `&`, you may have to start another terminal, connect to EC2 via ssh and run the next command.
@@ -150,8 +144,8 @@ You have completed developing and deploying an end-to-end machine learning model
 
 ---
 
-# E. Next: Security Considerations
-## Storing Access Keys on EC2
+# 5. Next: Security Considerations
+## 5.1 Storing Access Keys on EC2?
 You generally should not put AWS access keys on the EC2 instance as we did in Step 6.4.1 above.
 
 Instead, give the EC2 instance an IAM role (instance profile) with an S3 policy attached to it.
@@ -174,3 +168,6 @@ response = s3.get_object(
 data = response["Body"].read()
 ```
 
+## 5.2 Should the EC2 be directly accessed via port 80 and 443 from anywhere?
+
+## 5.3 How about serverless alternatives?
