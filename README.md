@@ -2,7 +2,7 @@
 
 In this exercise, you will develop and deploy a simple linear regression model on AWS. The exercise enables you to practice the following key AWS services, S3, SageMaker, EC2, CloudFormation, VPC, Internet Gateway, Subnet, Security Group, Route Table and IAM. In addition, it provides a solid structure of ecosystem to develop a secure, scalable machine learning app.
 
-===
+---
 
 # A. Preparation
 ## Step 1. Install Amazon CLI
@@ -77,7 +77,6 @@ You can also verify by using the AWS console: **CloudFormation** --> **Stacks**
 
 In case you see the status correspoding to your stak name a value different from `CREATE_COMPLETE`, you can get more details about the events. You can see the events by clicking the stack name and opening the **Events** tab.
 
----
 ---
 
 # C. Model Building
