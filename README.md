@@ -76,7 +76,7 @@ In case you see the status correspoding to your stak name a value different from
 
 ---
 
-# Step 3. Build the Model
+# Step 3. Prepare the Data
 ## 3.1 Upload data to S3 Bucket
 Upload dataset to data folder of S3 bucket using `aws s3 cp path-to-data s3://bucket-name/path-to-data
 
@@ -86,19 +86,21 @@ Example:
 aws s3 cp data/exam_scores.csv \
         s3://my-ml-bucket-2108/data/exam_scores.csv
 ```
-## 3.2 Build and Deploy Model on SageMaker
+
+# Step 4. Build the Model
+## 4.1 Build and Deploy Model on SageMaker
 
 Use the [Notebook](exam-score-linear-regression-example.ipynb) to build the model and upload it to S3 on On SageMaker.
 
 ---
 
-# Step 4. Inference
+# Step 5. Inference
 
-## 4.1. Setup the EC2 Server
-### 4.1.1 Connect to the EC2 server via ssh
+## 5.1. Setup the EC2 Server
+### 5.1.1 Connect to the EC2 server via ssh
 ssh -i ~/.ssh/exam-score-server.pem ubuntu@public-ip-of-EC2-Instance
 
-### 4.1.2 Create python virtual environment. Install if you need to.
+### 5.1.2 Create python virtual environment. Install if you need to.
 `sudo apt update`
 
 `sudo apt install python3.12-venv`
@@ -107,10 +109,10 @@ ssh -i ~/.ssh/exam-score-server.pem ubuntu@public-ip-of-EC2-Instance
 
 `source .venv/bin/activate`
 
-## 4.1.3 Install required libraries
+## 5.1.3 Install required libraries
 `pip install -r requirements.txt`
 
-### 4.1.4 Do you need to store credentials on EC2 instance?
+### 5.1.4 Do you need to store credentials on EC2 instance?
 But before you run the file [download_model.py]("download_model.py") with `python download_model.py`, you may need to first set the credentials.
     
 ```
@@ -128,7 +130,7 @@ sudo ./aws/install
 ```
 Then run the command in Step 2 above on the EC2 server
 
-## 4.2 Download the Model and Perform Prediction
+## 5.2 Download the Model and Perform Prediction
 After credentials are in place, you can run `python download_model.py`
 
 Then create the predict.py file on the EC2 server and run `flask --app predict run --host 0.0.0.0 --port 8000 &`. The `&` is needed to run the flask app in the background. By doing so, you cna run other commands on the same terminal. If you omit `&`, you may have to start another terminal, connect to EC2 via ssh and run the next command.
@@ -144,8 +146,8 @@ You have completed developing and deploying an end-to-end machine learning model
 
 ---
 
-# 5. Next: Security Considerations
-## 5.1 Storing Access Keys on EC2?
+# 6. Next: Security and Cost Considerations
+## 6.1 Security -> Storing Access Keys on EC2?
 You generally should not put AWS access keys on the EC2 instance as we did in Step 6.4.1 above.
 
 Instead, give the EC2 instance an IAM role (instance profile) with an S3 policy attached to it.
@@ -168,6 +170,6 @@ response = s3.get_object(
 data = response["Body"].read()
 ```
 
-## 5.2 Should the EC2 be directly accessed via port 80 and 443 from anywhere?
+## 6.2 Security -> Should the EC2 be directly accessed via port 80 and 443 from anywhere?
 
-## 5.3 How about serverless alternatives?
+## 6.3 Cose -> How about serverless alternatives?
