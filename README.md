@@ -10,6 +10,13 @@ In this exercise, you will develop and deploy a simple linear regression model o
 apt update
 apt install awscli
 ```
+#if the above command does not work, use the following to install awscli
+```
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+sudo apt install unzip -y
+unzip awscliv2.zip
+sudo ./aws/install
+```
 
 ## 1.2. Configure Credentials
 When prompted, enter the key and secret provided after you created the sandbox.
@@ -111,22 +118,7 @@ ssh -i ~/.ssh/exam-score-server.pem ubuntu@public-ip-of-EC2-Instance
 `pip install -r requirements.txt`
 
 ### 5.1.4 Do you need to store credentials on EC2 instance?
-But before you run the file [download_model.py]("download_model.py") with `python download_model.py`, you may need to first set the credentials.
-    
-```
-# -- install awscli 
-apt update
-apt install awscli 
-```
-
-#if the above command does not work, use the following to install awscli
-```
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-sudo apt install unzip -y
-unzip awscliv2.zip
-sudo ./aws/install
-```
-Then run the command in Step 1.2 above on the EC2 server
+But before you run the file [download_model.py]("download_model.py") with `python download_model.py`, you may need to first set the credentials. If that is the case, run the command in Step 1.1 and Step 1.2 above on the EC2 server.
 
 ## 5.2 Download the Model and Perform Prediction
 After credentials are in place, you can run `python download_model.py`
