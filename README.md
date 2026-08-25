@@ -162,4 +162,4 @@ data = response["Body"].read()
 
 ## 6.2 Security -> Should the EC2 be directly accessed via port 80 and 443 from anywhere?
 
-## 6.3 Cose -> How about serverless alternatives?
+## 6.3 Cost -> How about serverless alternatives?
