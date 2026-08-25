@@ -11,8 +11,6 @@ apt update
 apt install awscli
 ```
 
----
-
 ## 1.2. Configure Credentials
 When prompted, enter the key and secret provided after you created the sandbox.
 
@@ -128,7 +126,7 @@ sudo apt install unzip -y
 unzip awscliv2.zip
 sudo ./aws/install
 ```
-Then run the command in Step 2 above on the EC2 server
+Then run the command in Step 1.2 above on the EC2 server
 
 ## 5.2 Download the Model and Perform Prediction
 After credentials are in place, you can run `python download_model.py`
@@ -148,7 +146,7 @@ You have completed developing and deploying an end-to-end machine learning model
 
 # 6. Next: Security and Cost Considerations
 ## 6.1 Security -> Storing Access Keys on EC2?
-You generally should not put AWS access keys on the EC2 instance as we did in Step 6.4.1 above.
+You generally should not put AWS access keys on the EC2 instance as we did in Step 5.1.4 above.
 
 Instead, give the EC2 instance an IAM role (instance profile) with an S3 policy attached to it.
 
