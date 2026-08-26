@@ -27,3 +27,6 @@ MODEL_KEY = "model/exam_score_model.joblib"
 ```
 
 ## Step 4. Create API Gateway and Integration with Lambda
+Once the API Gateway and Lambda integration is complete, use `curl` or your browser to browse the API Gateway endpoint `/predict?hours=8`.
+
+If everythin works well, you will get the exam score prediction.
