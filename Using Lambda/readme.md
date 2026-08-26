@@ -5,6 +5,9 @@ Here we will modify the model because the one we had has dependencies that make 
 Now we will rewrite the code that builds the model and reduce dependencies.
 
 ## Step 1. Create an S3 Bucket
+Make sure you have configured the credentials on your computer. Then you can create the bucket using the command line as follows:
+
+`aws s3 mb s3://bucket-name --region us-east-1`
 
 ## Step 2. Build the model and upload it to the S3 Bucket
 Use `end-to-end-regression-lambda.ipynb` to build the model and upload it to S3. Note that this Notebook uses the `model.py` file and you need to get it too.
