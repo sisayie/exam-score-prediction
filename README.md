@@ -121,9 +121,7 @@ ssh -i ~/.ssh/exam-score-server.pem ubuntu@public-ip-of-EC2-Instance
 But before you run the file [download_model.py]("download_model.py") with `python download_model.py`, you may need to first set the credentials. If that is the case, run the command in Step 1.1 and Step 1.2 above on the EC2 server.
 
 ## 5.2 Download the Model and Perform Prediction
-After credentials are in place, you can run `python download_model.py`
-
-Then create the predict.py file on the EC2 server and run `flask --app predict run --host 0.0.0.0 --port 8000 &`. The `&` is needed to run the flask app in the background. By doing so, you cna run other commands on the same terminal. If you omit `&`, you may have to start another terminal, connect to EC2 via ssh and run the next command.
+Then create the `predict.py` file on the EC2 server. The `predict.py` file downloads the model from S3 and runs it when you execute it with `flask --app predict run --host 0.0.0.0 --port 8000 &`. The `&` is needed to run the flask app in the background. By doing so, you cna run other commands on the same terminal. If you omit `&`, you may have to start another terminal, connect to EC2 via ssh and run the next command.
 
 Finally, on 
 `curl "http://localhost:8000/predict?hours=8"`
@@ -159,7 +157,13 @@ response = s3.get_object(
 
 data = response["Body"].read()
 ```
+This is handled if you use `exam-score-ml-stack_v2.yml` file to build your infrastructure in Step 2.1. Note that, you need to slightly modify the code in Step 2.2. 
+
+- First you need to replace `exam-score-ml-stack.yml` with `exam-score-ml-stack_v2.yml`. 
+- Second, you need to add the option `--capabilities CAPABILITY_IAM` in the command. This is useful to enable CloudFormation to create IAM roles.
 
 ## 6.2 Security -> Should the EC2 be directly accessed via port 80 and 443 from anywhere?
 
 ## 6.3 Cost -> How about serverless alternatives?
+
+

@@ -2,7 +2,22 @@
 from flask import Flask, request, jsonify
 import joblib
 
+import boto3
+
 app = Flask(__name__)
+
+## download the model from S3
+
+BUCKET = "my-ml-bucket-2108"
+MODEL_KEY = "model/exam_model.joblib"
+
+s3 = boto3.client("s3")
+
+s3.download_file(
+	BUCKET,
+	MODEL_KEY,
+	"exam_model.joblib"
+)
 
 model = joblib.load(
 "exam_model.joblib"
