@@ -14,10 +14,16 @@ create a directory (e.g., python) and run the following:
 
 `pip install -r requirements.txt -t python`. Note the `-t` which makes sure that the dependencies are downloaded to python folder.
 
-zip -r joblib-layer.zip python/
+`zip -r joblib-layer.zip python/`
 
 ## Step 4. Create Lambda Function
 - Create lambda function and replace the default code with the code in `predict.py`
 - Upload the `joblib-layer.zip` layer
+- Upload `model.py`
+- Add environment varialbes with their corresponding values, e.g., 
+```
+MODEL_BUCKET = "my-ml-bucket-2108"
+MODEL_KEY = "model/exam_score_model.joblib"
+```
 
 ## Step 4. Create API Gateway and Integration with Lambda
