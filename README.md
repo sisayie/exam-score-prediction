@@ -165,5 +165,5 @@ This is handled if you use `exam-score-ml-stack_v2.yml` file to build your infra
 ## 6.2 Security -> Should the EC2 be directly accessed via port 80 and 443 from anywhere?
 
 ## 6.3 Cost -> How about serverless alternatives?
-
+See the [Steps to Serverless option using Lambda](Using Lambda/readme.md)
 
