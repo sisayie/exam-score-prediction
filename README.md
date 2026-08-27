@@ -164,7 +164,7 @@ This is handled if you use `exam-score-ml-stack_v2.yml` file to build your infra
 
 ## 6.2 Security -> Should the EC2 be directly accessed via port 80 and 443 from anywhere?
 Using CloudFront to Access a Flask App on EC2
-![CloudFront](https://example.com/image.jpg "Using ClouFront infront of E2")
+![CloudFront](images/ml_architecture.png "Using ClouFront infront of E2")
 ### 6.2.1 Create a CloudFront Distribution
 
 In the AWS Console:
