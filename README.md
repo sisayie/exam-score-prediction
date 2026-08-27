@@ -163,6 +163,112 @@ This is handled if you use `exam-score-ml-stack_v2.yml` file to build your infra
 - Second, you need to add the option `--capabilities CAPABILITY_IAM` in the command. This is useful to enable CloudFormation to create IAM roles.
 
 ## 6.2 Security -> Should the EC2 be directly accessed via port 80 and 443 from anywhere?
+Using CloudFront to Access a Flask App on EC2
+### 6.2.1 Create a CloudFront Distribution
+
+In the AWS Console:
+
+- Open CloudFront
+- Select **Create distribution**
+- Configure the EC2 instance as the origin
+- Select the appropriate origin protocol
+- Configure the CloudFront behavior
+
+The origin can be the EC2 public DNS name similar to:
+
+```
+ec2-54-123-45-67.eu-west-1.compute.amazonaws.com
+```
+
+Do not include **http://** when entering the origin hostname.
+
+### 6.2.2 Configure the Origin
+
+For the this setup:
+
+- **Origin** EC2 public DNS name
+- **Protocol** HTTP only 
+- **Port** 8000
+
+CloudFront will make requests similar to:
+
+```
+http://EC2-HOSTNAME:8000/
+```
+
+The complete path becomes:
+
+CloudFront -> EC2:8000 -> Gunicorn -> Flask
+
+### 6.2.3 Configure the CloudFront Behavior
+
+For the Flask application:
+
+- Viewer protocol: Redirect HTTP to HTTPS
+- Allowed methods: GET, HEAD
+- Configure caching carefully
+
+The user accesses:
+
+```
+https://d123abc456xyz.cloudfront.net
+```
+
+CloudFront handles the HTTPS connection with the browser.
+
+**Caching** -- CloudFront is a CDN, so it can cache responses.
+
+This is useful for:
+
+- CSS
+- JavaScript
+- Images
+- Fonts
+- Other static files
+
+But dynamic application responses should usually not be cached blindly.
+
+For example:
+
+```
+/static/style.css    -> cache
+/static/app.js       -> cache
+/api/users           -> do not cache
+/login               -> do not cache
+/dashboard           -> do not cache
+```
+### 6.2.4 Test CloudFront
+
+After the distribution is deployed, CloudFront provides a domain similar to:
+
+```
+d123abc456xyz.cloudfront.net
+```
+
+Test it on browser or command line (i.e., curl):
+
+```
+https://d123abc456xyz.cloudfront.net/
+```
+
+Expected result:
+
+```
+ "Welcome to Flask on EC2"
+```
+
+Test the API:
+
+```
+https://d123abc456xyz.cloudfront.net/predict?hours=8
+```
+Expected result:
+
+```
+ {{
+    "hours": 8,
+    "prediction": 74.88228438228438
+ }
 
 ## 6.3 Cost -> How about serverless alternatives?
 See the [Serverless option using Lambda](https://github.com/sisayie/exam-score-prediction/blob/main/Using%20Lambda/readme.md))
