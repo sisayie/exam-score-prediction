@@ -266,7 +266,7 @@ https://d123abc456xyz.cloudfront.net/predict?hours=8
 Expected result:
 
 ```
- {{
+ {
     "hours": 8,
     "prediction": 74.88228438228438
  }
