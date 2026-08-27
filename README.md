@@ -270,6 +270,7 @@ Expected result:
     "hours": 8,
     "prediction": 74.88228438228438
  }
+```
 
 ## 6.3 Cost -> How about serverless alternatives?
 See the [Serverless option using Lambda](https://github.com/sisayie/exam-score-prediction/blob/main/Using%20Lambda/readme.md))
